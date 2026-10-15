@@ -1,8 +1,8 @@
-\# Amazon CloudWatch – Monitoring and Observability
+# Amazon CloudWatch – Monitoring and Observability
 
 
 
-\## 1. Project Overview
+## 1. Project Overview
 
 
 
@@ -14,11 +14,11 @@ In this project, CloudWatch is used to monitor EC2 CPU utilization, evaluate ala
 
 
 
-\## 2. Learning Objectives
+## 2. Learning Objectives
 
 
 
-\- Understand metrics, namespaces, dimensions, statistics, and periods.
+- Understand metrics, namespaces, dimensions, statistics, and periods.
 
 \- Understand CloudWatch alarm states and thresholds.
 
