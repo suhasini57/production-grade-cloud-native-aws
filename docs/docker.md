@@ -1,8 +1,8 @@
-\# Docker
+# Docker
 
 
 
-\## Objective
+## Objective
 
 
 
@@ -10,7 +10,7 @@ Containerize the Flask-based AWS Cloud Operations Dashboard application.
 
 
 
-\## Docker Concept
+## Docker Concept
 
 
 
@@ -22,7 +22,7 @@ This allows the application to run consistently across different environments.
 
 
 
-\## Dockerfile
+## Dockerfile
 
 
 
@@ -34,23 +34,23 @@ The Dockerfile:
 
 
 
-1\. Creates a Python environment
+1. Creates a Python environment
 
-2\. Sets `/app` as the working directory
+2. Sets `/app` as the working directory
 
-3\. Copies requirements.txt
+3. Copies requirements.txt
 
-4\. Installs Python dependencies
+4. Installs Python dependencies
 
-5\. Copies the Flask application
+5. Copies the Flask application
 
-6\. Exposes port 5000
+6. Exposes port 5000
 
-7\. Starts the Flask application
+7. Starts the Flask application
 
 
 
-\## Build Docker Image
+## Build Docker Image
 
 
 
