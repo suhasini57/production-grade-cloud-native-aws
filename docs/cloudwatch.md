@@ -340,11 +340,11 @@ CloudWatch Logs centralizes logs from applications and AWS services.
 
 
 
-- \*\*Log group:\*\* A collection of related log streams.
+- **Log group:** A collection of related log streams.
 
-- \*\*Log stream:\*\* A sequence of log events from a source.
+- **Log stream:** A sequence of log events from a source.
 
-- \*\*Log event:\*\* An individual timestamped log entry.
+- **Log event:** An individual timestamped log entry.
 
 
 
