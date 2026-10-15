@@ -20,21 +20,21 @@ In this project, CloudWatch is used to monitor EC2 CPU utilization, evaluate ala
 
 - Understand metrics, namespaces, dimensions, statistics, and periods.
 
-\- Understand CloudWatch alarm states and thresholds.
+- Understand CloudWatch alarm states and thresholds.
 
-\- Learn about log groups, log streams, and log events.
+- Learn about log groups, log streams, and log events.
 
-\- Understand ECS logging and the CloudWatch Agent.
+- Understand ECS logging and the CloudWatch Agent.
 
-\- Compare CloudWatch, CloudTrail, and AWS Config.
+- Compare CloudWatch, CloudTrail, and AWS Config.
 
-\- Use AWS CLI commands to inspect metrics and alarms.
+- Use AWS CLI commands to inspect metrics and alarms.
 
-\- Apply troubleshooting and cost-control practices.
+- Apply troubleshooting and cost-control practices.
 
 
 
-\## 3. CloudWatch Architecture
+## 3. CloudWatch Architecture
 
 
 
@@ -42,23 +42,23 @@ The typical monitoring workflow is:
 
 
 
-1\. AWS resources and applications generate metrics and logs.
+1. AWS resources and applications generate metrics and logs.
 
-2\. CloudWatch collects and stores the monitoring data.
+2. CloudWatch collects and stores the monitoring data.
 
-3\. Users inspect metrics through graphs and dashboards.
+3. Users inspect metrics through graphs and dashboards.
 
-4\. CloudWatch alarms evaluate metrics against configured conditions.
+4. CloudWatch alarms evaluate metrics against configured conditions.
 
-5\. Configured alarm actions can send notifications or initiate supported actions.
-
-
-
-\## 4. Important CloudWatch Concepts
+5. Configured alarm actions can send notifications or initiate supported actions.
 
 
 
-\### 4.1 Metrics
+## 4. Important CloudWatch Concepts
+
+
+
+### 4.1 Metrics
 
 
 
@@ -68,13 +68,13 @@ A metric is a time-ordered collection of measurements.
 
 Examples:
 
-\- EC2 CPU utilization
+- EC2 CPU utilization
 
-\- Network traffic
+- Network traffic
 
-\- Application error counts
+- Application error counts
 
-\- Request counts
+- Request counts
 
 
 
@@ -82,7 +82,7 @@ This project uses the EC2 `CPUUtilization` metric.
 
 
 
-\### 4.2 Namespace
+### 4.2 Namespace
 
 
 
@@ -94,7 +94,7 @@ Example: `AWS/EC2`
 
 
 
-\### 4.3 Dimensions
+### 4.3 Dimensions
 
 
 
@@ -104,13 +104,13 @@ Dimensions identify the resource associated with a metric.
 
 Example:
 
-\- Dimension: `InstanceId`
+- Dimension: `InstanceId`
 
-\- Value: `i-0bebcc23fc903f975`
+- Value: `i-0bebcc23fc903f975`
 
 
 
-\### 4.4 Statistics
+### 4.4 Statistics
 
 
 
@@ -120,15 +120,15 @@ Statistics summarize metric measurements.
 
 Common statistics include:
 
-\- Average
+- Average
 
-\- Minimum
+- Minimum
 
-\- Maximum
+- Maximum
 
-\- Sum
+- Sum
 
-\- SampleCount
+- SampleCount
 
 
 
@@ -136,7 +136,7 @@ The EC2 CPU alarm uses the `Average` statistic.
 
 
 
-\### 4.5 Period
+### 4.5 Period
 
 
 
@@ -148,7 +148,7 @@ The CPU alarm in this project uses a 300-second period, equivalent to five minut
 
 
 
-\## 5. CloudWatch Alarms
+## 5. CloudWatch Alarms
 
 
 
@@ -156,37 +156,37 @@ CloudWatch alarms evaluate metrics against configured conditions.
 
 
 
-\### Alarm States
+### Alarm States
 
 
 
-\- `OK`: The evaluated metric does not breach the alarm condition.
+- `OK`: The evaluated metric does not breach the alarm condition.
 
-\- `ALARM`: The configured alarm condition has been met.
+- `ALARM`: The configured alarm condition has been met.
 
-\- `INSUFFICIENT\_DATA`: There is insufficient data to evaluate the condition.
-
-
-
-\### Important Alarm Settings
+- `INSUFFICIENT\_DATA`: There is insufficient data to evaluate the condition.
 
 
 
-\- Metric and namespace
+### Important Alarm Settings
 
-\- Dimensions
 
-\- Statistic and period
 
-\- Threshold
+- Metric and namespace
 
-\- Evaluation periods
+- Dimensions
 
-\- Datapoints to alarm
+- Statistic and period
 
-\- Missing-data treatment
+- Threshold
 
-\- Alarm actions
+- Evaluation periods
+
+- Datapoints to alarm
+
+- Missing-data treatment
+
+- Alarm actions
 
 
 
@@ -194,11 +194,11 @@ An alarm's state depends on its evaluation configuration and available datapoint
 
 
 
-\## 6. Practical Exercise: EC2 CPU Alarm
+## 6. Practical Exercise: EC2 CPU Alarm
 
 
 
-\### Existing Configuration
+### Existing Configuration
 
 
 
@@ -230,7 +230,7 @@ An alarm's state depends on its evaluation configuration and available datapoint
 
 
 
-\### Inspect the Alarm
+### Inspect the Alarm
 
 
 
@@ -250,7 +250,7 @@ aws cloudwatch describe-alarms \\
 
 
 
-\### Discover the CPU Metric
+### Discover the CPU Metric
 
 
 
@@ -270,7 +270,7 @@ aws cloudwatch list-metrics \\
 
 
 
-\### Retrieve CPU Statistics
+### Retrieve CPU Statistics
 
 
 
@@ -306,17 +306,17 @@ This command retrieves available datapoints for the specified UTC time range.
 
 
 
-\### Results Observed
+### Results Observed
 
 
 
-\- The CPU metric was successfully discovered.
+- The CPU metric was successfully discovered.
 
-\- One query returned a CPU utilization average of approximately `0.1216%`.
+- One query returned a CPU utilization average of approximately `0.1216%`.
 
-\- The alarm later returned the state `OK`.
+- The alarm later returned the state `OK`.
 
-\- Its evaluation reason reported a separate datapoint of approximately `0.00166%`, below the 70% threshold.
+- Its evaluation reason reported a separate datapoint of approximately `0.00166%`, below the 70% threshold.
 
 
 
@@ -328,7 +328,7 @@ The exercise verified the metric and alarm. It did not involve deliberately gene
 
 
 
-\## 7. CloudWatch Logs
+## 7. CloudWatch Logs
 
 
 
@@ -336,19 +336,19 @@ CloudWatch Logs centralizes logs from applications and AWS services.
 
 
 
-\### Components
+### Components
 
 
 
-\- \*\*Log group:\*\* A collection of related log streams.
+- \*\*Log group:\*\* A collection of related log streams.
 
-\- \*\*Log stream:\*\* A sequence of log events from a source.
+- \*\*Log stream:\*\* A sequence of log events from a source.
 
-\- \*\*Log event:\*\* An individual timestamped log entry.
+- \*\*Log event:\*\* An individual timestamped log entry.
 
 
 
-\### Inspect Log Groups
+### Inspect Log Groups
 
 
 
@@ -366,9 +366,9 @@ Log groups discovered during the project:
 
 
 
-\- `/ecs/aws-cloud-dashboard-task`
+- `/ecs/aws-cloud-dashboard-task`
 
-\- `/ecs/aws-learning-web-task`
+- `/ecs/aws-learning-web-task`
 
 
 
@@ -376,7 +376,7 @@ The first log group contained stored data when inspected. A log group's existenc
 
 
 
-\### ECS Logging
+### ECS Logging
 
 
 
@@ -386,13 +386,13 @@ The ECS task definition uses the `awslogs` logging driver to send container stan
 
 Application logs help investigate:
 
-\- Startup failures
+- Startup failures
 
-\- Runtime errors
+- Runtime errors
 
-\- Database connection problems
+- Database connection problems
 
-\- Container behavior
+- Container behavior
 
 
 
@@ -400,7 +400,7 @@ Never log passwords, access keys, or other sensitive information.
 
 
 
-\## 8. CloudWatch Agent
+## 8. CloudWatch Agent
 
 
 
@@ -410,13 +410,13 @@ The CloudWatch Agent can collect additional system-level metrics and logs from s
 
 Depending on its configuration, it can collect:
 
-\- Memory utilization
+- Memory utilization
 
-\- Disk utilization
+- Disk utilization
 
-\- Additional system metrics
+- Additional system metrics
 
-\- Application log files
+- Application log files
 
 
 
@@ -428,11 +428,11 @@ The agent was studied conceptually in this project, but its installation on the 
 
 
 
-\## 9. Custom Metrics and Metric Filters
+## 9. Custom Metrics and Metric Filters
 
 
 
-\### Custom Metrics
+### Custom Metrics
 
 
 
@@ -442,13 +442,13 @@ Applications can publish their own metrics.
 
 Examples:
 
-\- Failed deployment count
+- Failed deployment count
 
-\- Application error count
+- Application error count
 
-\- Business transaction failures
+- Business transaction failures
 
-\- Queue processing delays
+- Queue processing delays
 
 
 
@@ -456,7 +456,7 @@ Custom metrics help monitor application behavior that infrastructure metrics alo
 
 
 
-\### Metric Filters
+### Metric Filters
 
 
 
@@ -472,7 +472,7 @@ No metric filters were configured in the log groups inspected during this exerci
 
 
 
-\## 10. CloudWatch vs. CloudTrail vs. AWS Config
+## 10. CloudWatch vs. CloudTrail vs. AWS Config
 
 
 
@@ -492,55 +492,55 @@ These services complement each other but serve different purposes.
 
 
 
-\## 11. Troubleshooting
+## 11. Troubleshooting
 
 
 
-\### Problem: No Metric Datapoints
+### Problem: No Metric Datapoints
 
 
 
 Possible causes:
 
-\- Incorrect AWS Region
+- Incorrect AWS Region
 
-\- Incorrect resource ID
+- Incorrect resource ID
 
-\- Requested time range contains no available datapoints
+- Requested time range contains no available datapoints
 
-\- Metrics have not yet been published
+- Metrics have not yet been published
 
-\- Metric is inactive or unavailable for the selected interval
+- Metric is inactive or unavailable for the selected interval
 
 
 
 Troubleshooting steps:
 
-1\. Verify the resource ID and Region.
+1. Verify the resource ID and Region.
 
-2\. Run `list-metrics`.
+2. Run `list-metrics`.
 
-3\. Check the UTC start and end times.
+3. Check the UTC start and end times.
 
-4\. Query an appropriate recent time range.
+4. Query an appropriate recent time range.
 
-5\. Check the resource state and monitoring configuration.
+5. Check the resource state and monitoring configuration.
 
 
 
-\### Problem: Alarm Is INSUFFICIENT\_DATA
+### Problem: Alarm Is INSUFFICIENT\_DATA
 
 
 
 Possible causes:
 
-\- Insufficient datapoints
+- Insufficient datapoints
 
-\- Missing metric measurements
+- Missing metric measurements
 
-\- A recently created or reconfigured alarm
+- A recently created or reconfigured alarm
 
-\- Missing-data handling affecting evaluation
+- Missing-data handling affecting evaluation
 
 
 
@@ -548,49 +548,49 @@ Inspect the alarm's state reason before changing its configuration.
 
 
 
-\### Problem: ECS Logs Are Missing
+### Problem: ECS Logs Are Missing
 
 
 
 Check:
 
-\- Task definition logging configuration
+- Task definition logging configuration
 
-\- Log group and Region
+- Log group and Region
 
-\- ECS task execution role permissions
+- ECS task execution role permissions
 
-\- Whether the task ran and generated output
+- Whether the task ran and generated output
 
-\- Task stopped reason and application startup logs
-
-
-
-\## 12. Cost and Security Best Practices
+- Task stopped reason and application startup logs
 
 
 
-\- Stop EC2 instances when they are not needed.
-
-\- Remember that EBS storage can still incur charges while EC2 is stopped.
-
-\- Avoid unnecessary dashboards, alarms, log groups, and custom metrics.
-
-\- Review log retention settings to manage storage costs.
-
-\- Check CloudWatch pricing before enabling additional monitoring features.
-
-\- Use least-privilege IAM permissions.
-
-\- Avoid using the AWS root account for routine administration.
-
-\- Never commit credentials or secrets to GitHub.
-
-\- Avoid enabling automated remediation during initial learning exercises.
+## 12. Cost and Security Best Practices
 
 
 
-\## 13. Learning Outcomes
+- Stop EC2 instances when they are not needed.
+
+- Remember that EBS storage can still incur charges while EC2 is stopped.
+
+- Avoid unnecessary dashboards, alarms, log groups, and custom metrics.
+
+- Review log retention settings to manage storage costs.
+
+- Check CloudWatch pricing before enabling additional monitoring features.
+
+- Use least-privilege IAM permissions.
+
+- Avoid using the AWS root account for routine administration.
+
+- Never commit credentials or secrets to GitHub.
+
+- Avoid enabling automated remediation during initial learning exercises.
+
+
+
+## 13. Learning Outcomes
 
 
 
@@ -598,19 +598,19 @@ This exercise demonstrated how to:
 
 
 
-\- Discover EC2 metrics using the AWS CLI.
+- Discover EC2 metrics using the AWS CLI.
 
-\- Retrieve CPU statistics for a selected time range.
+- Retrieve CPU statistics for a selected time range.
 
-\- Inspect an existing CloudWatch alarm.
+- Inspect an existing CloudWatch alarm.
 
-\- Interpret alarm states.
+- Interpret alarm states.
 
-\- Discover CloudWatch log groups.
+- Discover CloudWatch log groups.
 
-\- Understand ECS container logging.
+- Understand ECS container logging.
 
-\- Identify common monitoring issues and cost considerations.
+- Identify common monitoring issues and cost considerations.
 
 
 
@@ -618,7 +618,7 @@ The exercise verified the existing EC2 metric and alarm. It did not configure no
 
 
 
-\## 14. Interview Summary
+## 14. Interview Summary
 
 
 
