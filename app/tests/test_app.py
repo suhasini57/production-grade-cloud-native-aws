@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+# Add the application directory to Python's import path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+# Import the Flask application
 from app import app
 
 
