@@ -64,3 +64,33 @@ jobs:
       - name: Verify Docker image
         run: |
           docker images
+
+  aws-auth-test:
+    name: Test AWS OIDC Authentication
+    runs-on: ubuntu-latest
+    needs: [test, build]
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ap-south-2
+          role-session-name: GitHubActions-${{ github.run_id }}
+          allowed-account-ids: "989445685277"
+
+      - name: Verify AWS identity
+        run: aws sts get-caller-identity
+
+      - name: Verify ECR authorization
+        run: |
+          aws ecr get-authorization-token \
+            --region ap-south-2 \
+            --query 'authorizationData[0].proxyEndpoint' \
+            --output text
