@@ -1,0 +1,39 @@
+
+{
+  "family": "aws-cloud-dashboard-task",
+  "executionRoleArn": "arn:aws:iam::989445685277:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "containerDefinitions": [
+    {
+      "name": "aws-cloud-dashboard",
+      "image": "REPLACE_WITH_ECR_IMAGE",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 5000,
+          "hostPort": 5000,
+          "protocol": "tcp",
+          "name": "aws-cloud-dashboard-5000-tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "environment": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/aws-cloud-dashboard-task",
+          "awslogs-create-group": "true",
+          "awslogs-region": "ap-south-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
