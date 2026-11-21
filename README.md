@@ -38,98 +38,34 @@ A GitHub Actions pipeline automates testing, Docker image creation, publishing t
 
 
 
+
 ### Implemented CI/CD and AWS deployment flow
 
-
-
-```text
-
-Developer
-
-&#x20;   |
-
-&#x20;   v
-
-GitHub Repository
-
-&#x20;   |
-
-&#x20;   v
-
-GitHub Actions
-
-&#x20;   |
-
-&#x20;   +---- Run Python / Flask Tests
-
-&#x20;   |
-
-&#x20;   +---- Build Docker Image
-
-&#x20;   |
-
-&#x20;   +---- Authenticate to AWS using OIDC
-
-&#x20;   |
-
-&#x20;   v
-
-Amazon ECR
-
-&#x20;   |
-
-&#x20;   v
-
-Render and Register ECS Task Definition
-
-&#x20;   |
-
-&#x20;   v
-
-Amazon ECS Service
-
-&#x20;   |
-
-&#x20;   v
-
-AWS Fargate
-
-&#x20;   |
-
-&#x20;   v
-
-Flask Application
-
-&#x20;   |
-
-&#x20;   +---- Application Logs
-
-&#x20;             |
-
-&#x20;             v
-
-&#x20;        Amazon CloudWatch
-
+```mermaid
+flowchart TD
+    A[Developer] --> B[GitHub Repository]
+    B --> C[GitHub Actions]
+    C --> D[Run Python / Flask Tests]
+    D --> E[Build Docker Image]
+    E --> F[Authenticate to AWS using OIDC]
+    F --> G[Amazon ECR]
+    G --> H[Render and Register ECS Task Definition]
+    H --> I[Amazon ECS Service]
+    I --> J[AWS Fargate]
+    J --> K[Flask Application]
+    K --> L[Amazon CloudWatch Logs]
 ```
+
 
 
 
 ### Local development flow
 
-
-
-```text
-
-Docker Compose
-
-&#x20;   |
-
-&#x20;   +---- Flask Application
-
-&#x20;   |
-
-&#x20;   +---- PostgreSQL Database
-
+```mermaid
+flowchart TD
+    A[Docker Compose] --> B[Flask Application]
+    A --> C[PostgreSQL Database]
+    B --> C
 ```
 
 
