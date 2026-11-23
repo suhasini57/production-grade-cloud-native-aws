@@ -127,9 +127,9 @@ The deployment process runs after the required testing and image-building stages
 
 ![CloudWatch application logs](docs/images/cloudwatch-logs.png)
 
-### Application Health Check
+### Application Health Check – Local Docker Compose
 
-![Application health check response](docs/images/health-check.png)
+![Local Docker Compose health check](docs/images/health-check.png)
 
 **Availability note:** The ECS service is not continuously running while its desired count is zero. Running Fargate tasks can incur charges.
 
