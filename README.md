@@ -1,4 +1,4 @@
-# Production-Grade Cloud-Native Application on AWS
+# Cloud-Native Flask Application on AWS
 
 A cloud-native application built with Python and Flask, containerized using Docker, and deployed to Amazon ECS with AWS Fargate. This project demonstrates automated testing, container image publishing, and deployment through GitHub Actions using secure AWS OIDC authentication.
 
