@@ -113,15 +113,23 @@ The deployment process runs after the required testing and image-building stages
 | Application Port | 5000 |
 | Logging | Amazon CloudWatch |
 
-### Deployment verification
+## Deployment verification
 
-The application was deployed and tested using AWS Fargate.
+### GitHub Actions – Successful CI/CD Pipeline
 
-- Flask application started successfully inside the container.
-- `/health` returned HTTP 200 with a healthy status.
-- `/` returned HTTP 200 and displayed the dashboard.
-- CloudWatch logs were retrieved to verify application startup and requests.
-- ECS service desired count was set to zero after testing to reduce compute costs.
+![Successful GitHub Actions workflow](docs/images/github-actions-success.png)
+
+### Amazon ECS – Service Deployment
+
+![Amazon ECS service](docs/images/ecs-service.png)
+
+### Amazon CloudWatch – Application Logs
+
+![CloudWatch application logs](docs/images/cloudwatch-logs.png)
+
+### Application Health Check
+
+![Application health check response](docs/images/health-check.png)
 
 **Availability note:** The ECS service is not continuously running while its desired count is zero. Running Fargate tasks can incur charges.
 
